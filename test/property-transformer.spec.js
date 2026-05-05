@@ -18,14 +18,14 @@ describe('PropertyTransformer', function () {
             });
         });
 
-        it('should not subtract 40 from vendor value in case of zero', function () {
+        it('should return null for currentTemperature when TemSen=0 (sensor not available)', function () {
             const SUT = new PropertyTransformer();
             const result = SUT.fromVendor({
                 TemSen: 0,
             });
 
             assert.deepEqual(result, {
-                currentTemperature: 0,
+                currentTemperature: null,
             });
         });
     });

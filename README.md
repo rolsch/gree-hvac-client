@@ -7,7 +7,7 @@ A client for communicating with Gree air conditioners.
 
 ## Requirements
 
-- NodeJS (>=16)
+- NodeJS (>=18)
 
 ## Installation
 
@@ -524,7 +524,7 @@ Device properties constants
 | mode | <code>string</code> | Mode of operation |
 | temperatureUnit | <code>string</code> | Temperature unit (must be together with set temperature) |
 | temperature | <code>string</code> | Set temperature (must be together with temperature unit) |
-| currentTemperature | <code>string</code> | Get current temperature from the internal (?) sensor (This value can not be set, only received. HVAC must support this feature otherwise the value is 0) |
+| currentTemperature | <code>string</code> | Get current temperature from the internal (?) sensor (This value can not be set, only received. HVAC must support this feature otherwise null is returned) |
 | fanSpeed | <code>string</code> | Fan speed |
 | air | <code>string</code> | Fresh air valve |
 | blow | <code>string</code> | Keeps the fan running for a while after shutting down (also called "X-Fan", only usable in Dry and Cool mode) |
