@@ -316,7 +316,7 @@ It is important to subscribe to the `error` event, otherwise the process will be
 
 | Param | Type |
 | --- | --- |
-| error | <code>[ClientError](#ClientError)</code> | 
+| error | [<code>ClientError</code>](#ClientError) | 
 
 <a name="Client+event_disconnect"></a>
 
@@ -431,14 +431,14 @@ Client options
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| host | <code>string</code> | <code>"192.168.1.255"</code> | GREE device ip-address |
+| host | <code>string</code> | <code>&quot;192.168.1.255&quot;</code> | GREE device ip-address |
 | port | <code>number</code> | <code>7000</code> | GREE device UDP port |
 | connectTimeout | <code>number</code> | <code>3000</code> | Reconnect to device if no success timeout |
 | autoConnect | <code>boolean</code> | <code>true</code> | Automatically connect to device when client is created. Alternatively method `connect()` can be used. |
 | poll | <code>boolean</code> | <code>true</code> | Poll device properties |
 | pollingInterval | <code>number</code> | <code>3000</code> | Device properties polling interval |
 | pollingTimeout | <code>number</code> | <code>1000</code> | Device properties polling timeout, emits `no_response` events in case of no response from HVAC device for a status request |
-| logLevel | <code>string</code> | <code>"error"</code> | Logging level (debug, info, warn, error) |
+| logLevel | <code>string</code> | <code>&quot;error&quot;</code> | Logging level (debug, info, warn, error) |
 | debug | <code>boolean</code> | <code>false</code> | Override logLevel to debug, deprecated, use logLevel option |
 
 <a name="PROPERTY_VALUE"></a>
