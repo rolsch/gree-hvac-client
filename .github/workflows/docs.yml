@@ -3,16 +3,28 @@ on:
   workflow_call:
   pull_request:
   push:
+    branches:
+      - master
 
 jobs:
-  check:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: 24
       - run: npm ci
       - run: npm run docs
-      - name: Check README.md is up to date (forget to run 'npm run docs'?)
-        uses: NathanielHill/fail-if-changes@9e6ed6bb0543551728592d8114cfaa1dcd9155a6
+      - name: Commit updated README.md
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "No changes to README.md" || (git add README.md && git commit -m "docs: regenerate README.md [skip ci]")
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
