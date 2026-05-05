@@ -26,13 +26,14 @@ const PROPERTY_VALUE_TRANSFORMERS = {
         fromVendor: function (value) {
             // Temperature from the AC should be transformed by subtract 40 to get real temperature
             // AC returns temperature+40. I believe it's because it has unsigned data type
-            // When TemSen=0 it likely means the devices does not support the feature
+            // When TemSen=0 it likely means the device does not support the feature.
+            // Return null so callers can distinguish "no sensor" from a valid reading.
             // @see https://github.com/ddenisyuk/homebridge-gree-heatercooler/blob/3979fc6dad9d1935c59c686eb1764a062246ee7c/index.js#L224-L226
-            if (value !== 0) {
-                value -= 40;
+            if (value === 0) {
+                return null;
             }
 
-            return value;
+            return value - 40;
         },
         toVendor: function () {
             throw new Error(`Cannot set read-only property currentTemperature`);
