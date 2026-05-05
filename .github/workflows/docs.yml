@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: npm ci
+      - run: npm install
       - name: Generate README.md
         run: npx jsdoc2md -t README.hbs src/*.js > README.md
       - name: Commit updated README.md
