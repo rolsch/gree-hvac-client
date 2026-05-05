@@ -17,12 +17,13 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
-      - run: npm run docs
+      - name: Generate README.md
+        run: npx jsdoc2md -t README.hbs src/*.js > README.md
       - name: Commit updated README.md
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && echo "No changes to README.md" || (git add README.md && git commit -m "docs: regenerate README.md [skip ci]")
+          git diff --quiet README.md && echo "README.md unchanged" || (git add README.md && git commit -m "docs: regenerate README.md [skip ci]")
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
